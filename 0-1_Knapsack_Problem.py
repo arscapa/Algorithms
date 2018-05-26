@@ -15,6 +15,9 @@ for i in range (len(wt)+1):
                 
             ## Fill out table 
             elif (wt[i-1] <= x):
+                ## When i = 0 val[i] references first item in list
+                ## and when i=1 val[i] references second item in list
+                ## thus "val[i-1]" necesary to get correct list item
                 T[i][x] = max(val[i-1] + T[i-1][x-wt[i-1]], T[i-1][x])
             else:
                 T[i][x] = T[i-1][x]
