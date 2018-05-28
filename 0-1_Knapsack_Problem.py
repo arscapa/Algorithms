@@ -1,4 +1,5 @@
 ## Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack. 
+## Items can only be used once (no-repetition)
 
 wt = [1,3,4,5]
 val = [1,4,5,7]
