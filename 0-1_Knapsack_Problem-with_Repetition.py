@@ -1,4 +1,7 @@
+## Knapsack 0-1 Problem w/t Repetition
+
 ## Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack. 
+## Items can be used multiple times 
 
 wt = [1,3,4,5]
 val = [1,5,5,7]
