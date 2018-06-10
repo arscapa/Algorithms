@@ -2,9 +2,9 @@
 ## Items can only be used once (no-repetition)
 import copy
 
-wt = [1,3,4,5]
-val = [1,4,5,7]
-W = 7             ## Total capacity of knapsack
+wt = [2,3,4,6]
+val = [9,14,16,30]
+W = 10             ## Total capacity of knapsack
 
 T = [[0 for wts in range(W+1)] for vals in range(len(val)+1)]
 nums = [[ [] for wts in range(W+1)] for vals in range(len(val)+1)]
@@ -17,21 +17,12 @@ for i in range (len(wt)+1):
                 T[i][x] = 0
                 
             ## Fill out table 
-            elif (wt[i-1] <= x):
-                ## When i = 0 val[i] references first item in list
-                ## and when i=1 val[i] references second item in list
-                ## thus "val[i-1]" necesary to get correct list item
-                T[i][x] = max(val[i-1] + T[i-1][x-wt[i-1]], T[i-1][x])
+            elif (wt[i-1] <= x) and (val[i-1] + T[i-1][x-wt[i-1]] > T[i-1][x]):
+                T[i][x] = val[i-1] + T[i-1][x-wt[i-1]] ## update max value
 
-                if (val[i-1] + T[i-1][x-wt[i-1]] > T[i-1][x]):
-                        temp = copy.copy(nums[i-1][x-wt[i-1]])
-                        temp.append(val[i-1])
-                        nums[i][x]= temp
-                else:
-                        temp = copy.copy(nums[i-1][x])
-                        nums[i][x] = temp
-                        
-                        
+                temp = copy.copy(nums[i-1][x-wt[i-1]])
+                temp.append(val[i-1])
+                nums[i][x]= temp                      ## update knapsack contents                                                
                 
             else:
                 T[i][x] = T[i-1][x]
