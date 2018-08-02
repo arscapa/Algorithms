@@ -1,7 +1,7 @@
 ## Coin Change Variation 2  - Limited Supply of Coins
 
 ## Given a total and coins of values specified, determine least number of coins necessary to make change
-## LIMITED supply of coins of each denomination
+## Can only use each coin ONCE
 
 import copy
 
