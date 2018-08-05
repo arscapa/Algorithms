@@ -16,8 +16,8 @@ def coin_change(coin,total):
         ## Build table from left to right
         for val in range(len(coin)):
                 for subtotal in range(1,total+1):
-                        print "current coin is",val, " with value of ", coin[val]
-                        print "current subtotal",subtotal   
+                        ##print "current coin is",val, " with value of ", coin[val]
+                        ##print "current subtotal",subtotal   
                     
                         ## If subtotal equals coin value exactly, can make change with single coin
                         if subtotal == coin[val]:
@@ -33,13 +33,6 @@ def coin_change(coin,total):
                                         ## Update coin count
                                         T[val][subtotal] = min(1+T[val-1][subtotal-coin[val]],T[val-1][subtotal])
 
-                                        ## Update change necesasry
-                                        if T[val][subtotal] == (1+T[val-1][subtotal-coin[val]]):
-                                                temp = copy.copy(change[val-1][subtotal-coin[val]])
-                                                temp.append(coin[val])
-                                                change[val][subtotal] = temp
-                                        else:
-                                                change[val][subtotal] = change[val-1][subtotal]
                                 else:
                                         T[val][subtotal] = 1+T[val-1][subtotal-coin[val]]
 
@@ -52,9 +45,18 @@ def coin_change(coin,total):
                                 ## Don't take current coin
                                 T[val][subtotal] = T[val-1][subtotal]
 
-                                ## update change necessary
+
+
+                        ## Update change necesasry
+                        if T[val][subtotal] == T[val-1][subtotal]:
                                 change[val][subtotal] = change[val-1][subtotal]
-                        print T
+                        else:
+                                temp = copy.copy(change[val-1][subtotal-coin[val]])
+                                temp.append(coin[val])
+                                change[val][subtotal] = temp
+
+
+                        ##print T
                       
                                 
                 
